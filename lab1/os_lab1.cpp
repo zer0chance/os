@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <cassert>
-#include <string>
 
 typedef unsigned int uint;
 
@@ -132,13 +131,14 @@ public:
         free_list();
         std::ifstream ifs(filename);
 
-        while(!ifs.eof()) {
-            Node* n = new Node;
-            if(ifs.read(reinterpret_cast<char*>(n), sizeof(*n)).gcount() < sizeof(*n)) { delete n; break; }   
+        Node* n = new Node;
+        while(ifs.read(reinterpret_cast<char*>(n), sizeof(*n)).gcount() == sizeof(*n)) {
             append(n);
             delete n;
+            n = new Node;
         }
-
+        
+        delete n;
         ifs.close();
     }
 };

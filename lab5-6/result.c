@@ -71,12 +71,26 @@ LRESULT CALLBACK MyWndProc(HWND hWnd,
 			hStat = CreateWindow("static", "0", WS_CHILD | WS_VISIBLE,
 			                     60, 0, 120, 20, hWnd, 0, hInst, NULL);
 			ShowWindow(hStat, SW_SHOWNORMAL);
+			hEdt1 = CreateWindow("edit", "0", WS_CHILD | WS_VISIBLE,
+			                     60, 30, 120, 50, hWnd, 0, hInst, NULL);
+			hBtn = CreateWindow("button", "Send", WS_CHILD | WS_VISIBLE,
+			                     60, 70, 45, 15, hWnd, 0, hInst, NULL);
+			ShowWindow(hStat, SW_SHOWNORMAL);
 			break;
 		case WM_COMMAND:
+			if (lParam == (LPARAM)hBtn)
+			{
+				HWND hWndClient = FindWindow(NULL,"Dialog");
+				COPYDATASTRUCT data;
+				char result[100];
+				GetWindowText(hEdt1, result, 100);		
+				data.cbData = strlen(result);
+				data.lpData = result;
+				SendMessage(hWndClient, WM_COPYDATA, (WPARAM)GetFocus(), (LPARAM)&data);
+			}
 			break;
 		case WM_COPYDATA:
-			SetWindowText(hStat, (char*)(
-			                  ((COPYDATASTRUCT*)lParam)->lpData));
+			SetWindowText(hStat, (char*)(((COPYDATASTRUCT*)lParam)->lpData));
 			break;
 		case WM_PAINT:
 			hdc = BeginPaint(hWnd, &ps);

@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <stdio.h>
+#include <string.h>
 #include "resource.h"
 
 LRESULT CALLBACK DlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
@@ -57,6 +58,19 @@ LRESULT CALLBACK DlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 					break;
 			}
 			break;
+		case WM_COPYDATA:
+			//SetWindowText(hStat, (char*)(((COPYDATASTRUCT*)lParam)->lpData));
+
+			//char* get;
+			//get = (char*)(((COPYDATASTRUCT*)lParam)->lpData);
+			// char* first = strtok(get, "+-/*");
+			// char* sign = strtok(NULL, "123456789");
+			// char* second = strtok(NULL, "\n");
+			SetDlgItemText(hDlg, IDC_FIRST, (char*)(((COPYDATASTRUCT*)lParam)->lpData));
+			//SetDlgItemText(hDlg, IDC_SIGN, sign);
+			//SetDlgItemText(hDlg, IDC_SECOND, second);
+			//SetDlgItemText(hDlg,IDC_EDIT2,result);
+			break;	
 		default:
 			return FALSE;
 	}

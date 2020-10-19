@@ -2,3 +2,5 @@
 *.exe
 *.dat
 *.txt
+*.res
+*.obj

@@ -75,7 +75,7 @@ MyWndProc(HWND hWnd, UINT message,
 			hEdt2 = CreateWindow("edit", "0", WS_CHILD | WS_VISIBLE,
 			                     60, 70, 120, 90, hWnd, 0, hInst, NULL);
 			hBtn = CreateWindow("button", "Send", WS_CHILD | WS_VISIBLE,
-			                     60, 100, 120, 110, hWnd, 0, hInst, NULL);
+			                     60, 70, 120, 110, hWnd, 0, hInst, NULL);
 			ShowWindow(hStat, SW_SHOWNORMAL);
 			break;
 		case WM_COMMAND:

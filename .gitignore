@@ -4,3 +4,6 @@
 *.txt
 *.res
 *.obj
+*.lib
+*.exp
+*.dll

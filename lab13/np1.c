@@ -46,7 +46,7 @@ int main() {
     while (1) {
         iBytesToWrite = 255;
         iBytesToRead = 255;
-
+        printf("          ");
         ReadFile(hPipe1, buff1, iBytesToRead, &iBytesToRead, NULL);
         for(int i = 0; i < iBytesToRead; i++) printf("%c",buff1[i]);
 

@@ -61,6 +61,7 @@ int main() {
         WriteFile(hPipe1, buff1, strlen(buff1), &iBytesToWrite, NULL);
 
         ReadFile(hPipe2, buff2, iBytesToRead, &iBytesToRead, NULL);
+        printf("          ");
         for(i = 0; i < iBytesToRead; i++) printf("%c",buff2[i]);
     }
 
